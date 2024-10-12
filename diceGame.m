@@ -1,5 +1,7 @@
 % The game of dice is lol
 
+coinVals = ["tails" "heads"];
+
 diceInput = input(": ","s");
 diceFilter = ('0' <= diceInput) & (diceInput <= '9');
 
@@ -27,7 +29,12 @@ end
 index = 1;
 for i = 1:size(diceAmounts,2)
 	for j = index:index + diceAmounts(i) - 1
-		fprintf("%g sided die: %g\n",diceConfigs(i),rands(j));
+		if diceConfigs(i) == 2
+			fprintf("coin toss: %s\n",coinVals(rands(j)));
+		else
+			fprintf("%g sided die: %g\n",diceConfigs(i),rands(j));
+		end
 	end
+	fprintf("\n");
 	index = index + diceAmounts(i);
 end
